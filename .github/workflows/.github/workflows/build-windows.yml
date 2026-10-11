@@ -1,0 +1,19 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile program
+        run: gcc Laundry_Service_Management_System.c -o Laundry_Service.exe
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: Laundry-Service-Windows
+          path: Laundry_Service.exe
